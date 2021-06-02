@@ -23,9 +23,8 @@ namespace AsyncAwait.Task2.CodeReviewChallenge.Middleware
         {   
             string path = context.Request.Path;
 
-            var regVisitTask = _statisticService.RegisterVisitAsync(path);
+            await _statisticService.RegisterVisitAsync(path);
 
-            await regVisitTask;
             var visitsCount = await _statisticService.GetVisitsCountAsync(path);
 
             context.Response.Headers.Add(CustomHttpHeaders.TotalPageVisits, visitsCount.ToString());
